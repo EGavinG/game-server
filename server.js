@@ -3,6 +3,7 @@ const app = express();
 
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Game Server';
+app.use(express.static('public'));
 
 app.get('/', (request, response) => {
   response.send('Game Server Online~');
@@ -35,7 +36,6 @@ app.get('/api/v1/highscores/:id', (request, response) => {
 });
 
 app.use(express.json());
-app.use(express.static('public'));
 
 app.post('/api/v1/highscores', (request, response) => {
   const id = Date.now();
