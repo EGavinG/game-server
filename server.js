@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Game Server';
 
 app.get('/', (request, response) => {
