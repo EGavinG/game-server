@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Game Server';
 app.use(express.static('public'));
+app.use(cors());
 
 app.get('/', (request, response) => {
   response.send('Game Server Online~');
