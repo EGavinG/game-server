@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec 'babel-node server.js' && open http://localhost:3001",
+    "start": "nodemon --exec 'babel-node server.js' && start http://localhost:3001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
