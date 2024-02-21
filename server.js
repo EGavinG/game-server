@@ -1,18 +1,18 @@
 const express = require('express');
+const knex = require('knex')
+const knexConfig = require('./Knexfile')
 const app = express();
-const cors = require('cors')
+const cors = require('cors') 
+const PORT = process.env.PORT || 3001
 
-app.set('port', process.env.PORT || 3001);
+const db = knex(knexConfig['development']);
+
 app.locals.title = 'Game Server';
 app.use(express.static('public'));
 app.use(cors());
 
 app.get('/', (request, response) => {
   response.send('Game Server Online~');
-});
-
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
 
 app.locals.highScores = [
@@ -38,6 +38,16 @@ app.get('/api/v1/highscores/:id', (request, response) => {
 });
 
 app.use(express.json());
+
+app.get('/users', async (req, res) => {
+  try {
+    const users = await db('users').select('*');
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 app.post('/api/v1/highscores', (request, response) => {
   const id = Date.now();
@@ -67,4 +77,6 @@ app.post('/api/v1/highscores', (request, response) => {
 });
 
 
-
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
