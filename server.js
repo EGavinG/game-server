@@ -1,5 +1,5 @@
 const express = require('express');
-const knex = require('../knex');
+const knex = require('knex')
 const knexConfig = require('./Knexfile')
 const app = express();
 const cors = require('cors') 
@@ -10,7 +10,7 @@ const db = knex(knexConfig['development']);
 app.locals.title = 'Game Server';
 app.use(express.static('public'));
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 
 app.get('/', (request, response) => {
   response.send('Game Server Online~');
