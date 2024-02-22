@@ -1,7 +1,7 @@
 module.exports = {
     development: {
       client: 'postgresql',
-      connection: {
+      connection: process.env.DATABASE_URL || {
         database: 'game_server',
         user:     'Gavin',
         password: 'Renton'
@@ -13,6 +13,6 @@ module.exports = {
       migrations: {
         tableName: 'knex_highscores_migrations'
       }
-    },
+    }
   };
   
