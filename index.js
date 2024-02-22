@@ -11,9 +11,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/highscores', (req, res) => {
+    console.log("GET request received for /highscores");
     knex.select().from('highscores').then((highscores) => {
+        console.log("Retrieved highscores:", highscores);
         res.send(highscores)
-    })
+    }).catch(error => {
+        console.error("Error retrieving highscores:", error);
+        res.status(500).json({ error: 'An error occurred while retrieving highscores' });
+    });
 })
 
 app.post('/highscores', (req, res) => {
