@@ -30,6 +30,21 @@ app.post('/highscores', (req, res) => {
     })
 })
 
+app.delete('/highscores/:id', (req, res) => {
+  const { id } = req.params;
+
+  knex('highscores')
+      .where({ id })
+      .del()
+      .then(() => {
+          res.status(200).json({ message: `High score with ID ${id} has been deleted successfully` });
+      })
+      .catch(error => {
+          console.error('Error deleting high score:', error);
+          res.status(500).json({ error: 'An error occurred while deleting the high score' });
+      });
+});
+
 app.listen('3001', () => {
     console.log(`Server started at port 3001`)
 })
