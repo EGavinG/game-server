@@ -6,7 +6,7 @@ This repository contains the back end server for Tech Tamers. Follow the steps b
 # Getting Started
 Clone this repository to your local machine. You can do this by opening your terminal and running the following command:
 
-git clone <SSH of Repo>
+git clone SSH 'git@github.com:EGavinG/game-server.git'
 
 Navigate to the project directory:
 cd game-server
