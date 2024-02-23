@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 
 app.get('/highscores', (req, res) => {
     console.log("GET request received for /highscores");
+    console.log('highscores')
     knex.select().from('highscores').then((highscores) => {
         console.log("Retrieved highscores:", highscores);
         res.send(highscores)
